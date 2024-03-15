@@ -13,11 +13,8 @@ import static com.pch777.model.PackSize.of;
 
 public class PackCommandHandler extends BaseCommandHandler {
 
-
         private static final Logger LOG = Logger.getLogger(PackCommandHandler.class.getName());
-
-        public static final String COMMAND_NAME = "pack";
-
+        private static final String COMMAND_NAME = "pack";
         private final PackDao packDao;
 
         public PackCommandHandler(PackDao packDao) {
@@ -39,7 +36,6 @@ public class PackCommandHandler extends BaseCommandHandler {
             switch (command.getAction()) {
                 case LIST:
                     LOG.info("List of packs...");
-
                     validateNumberOfParams(command, 0);
 
                     if(packDao.getPacks().isEmpty()) {
@@ -47,42 +43,37 @@ public class PackCommandHandler extends BaseCommandHandler {
                     } else {
                         packDao.getPacks().forEach(System.out::println);
                     }
-
                     break;
 
                 case SEND:
                     LOG.info("Send pack");
-
                     validateNumberOfParams(command, 2);
 
-                    String packName = command.getParams().get(0);
-                    PackSize packSize = of(command.getParams().get(1));
+                    String packName = command.getParams().getFirst();
+                    PackSize packSize = of(command.getParams().getLast());
                     packDao.sendPack(new Pack(packName, packSize));
                     break;
 
                 case FIND:
                     LOG.info("Find a pack");
-
                     validateNumberOfParams(command, 1);
 
-                    String packNumber = command.getParams().get(0);
+                    String findPackNumber = command.getParams().getFirst();
+                    Optional<Pack> foundPack = packDao.findOne(findPackNumber );
 
-                    Optional<Pack> foundPack = packDao.findOne(packNumber);
                     if (foundPack.isPresent()) {
                         System.out.println(foundPack.get());
                     } else {
-                        throw new PackNotFoundException("Pack with number " + packNumber + " not found");
+                        throw new PackNotFoundException("Pack with number " + findPackNumber  + " not found");
                     }
                     break;
 
                 case RECEIVE:
                     LOG.info("Receive a pack");
-
                     validateNumberOfParams(command, 2);
 
-                    packNumber = command.getParams().get(0);
-                    String packCode = command.getParams().get(1);
-
+                    String packNumber = command.getParams().getFirst();
+                    String packCode = command.getParams().getLast();
                     packDao.receivePack(packNumber, packCode);
                     break;
 
@@ -97,7 +88,4 @@ public class PackCommandHandler extends BaseCommandHandler {
                 throw new IllegalArgumentException("Wrong command format. Check help for more information");
             }
         }
-
-
-
 }

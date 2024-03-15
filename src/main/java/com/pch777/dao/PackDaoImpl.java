@@ -11,9 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PackDaoImpl implements PackDao {
-
     private static final Logger LOG = Logger.getLogger(PackDaoImpl.class.getName());
-
     private final ParcelMachine parcelMachine;
 
     public PackDaoImpl(ParcelMachine parcelMachine) {
@@ -27,20 +25,13 @@ public class PackDaoImpl implements PackDao {
     public List<Pack> getPacks() {
         return parcelMachine.getPacks().stream().toList();
     }
-
     @Override
     public void sendPack(Pack pack) {
         parcelMachine.sendPack(pack);
     }
-
     @Override
-    public void receivePack(String packNumber, String packCode) {
-        try {
-            parcelMachine.receivePack(packNumber, packCode);
-        } catch (PackNotFoundException e){
-            LOG.log(Level.WARNING, "Pack exception " + e.getMessage());
-        }
-
+    public void receivePack(String packNumber, String packCode) throws PackNotFoundException {
+        parcelMachine.receivePack(packNumber, packCode);
     }
 
 }

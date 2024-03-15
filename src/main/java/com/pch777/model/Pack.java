@@ -1,7 +1,6 @@
 package com.pch777.model;
 
 public class Pack {
-
     public static int counter = 1;
     private String number;
     private String name;
@@ -23,31 +22,15 @@ public class Pack {
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getNumber() {
         return number;
     }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
     public PackSize getSize() {
         return size;
     }
-
-    public void setSize(PackSize size) {
-        this.size = size;
-    }
-
     public String getCode() {
         return code;
     }
-
     public void setCode(String code) {
         this.code = code;
     }

@@ -8,10 +8,9 @@ import java.util.logging.Logger;
 import static com.pch777.model.PackSize.*;
 
 public class ParcelMachine {
-
-    public static final int NUMBER_OF_SMALL_SIZE_BOXES = 2;
-    public static final int NUMBER_OF_MEDIUM_SIZE_BOXES = 1;
-    public static final int NUMBER_OF_LARGE_SIZE_BOXES = 1;
+    private static final int NUMBER_OF_SMALL_SIZE_BOXES = 2;
+    private static final int NUMBER_OF_MEDIUM_SIZE_BOXES = 1;
+    private static final int NUMBER_OF_LARGE_SIZE_BOXES = 1;
     private static final Logger LOG = Logger.getLogger(ParcelMachine.class.getName());
     private final Map<String, Pack> packStorage = new HashMap<>();
     private final Map<PackSize, Integer> boxSizeManager = new HashMap<>();

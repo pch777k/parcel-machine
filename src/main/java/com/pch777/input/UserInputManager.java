@@ -3,7 +3,6 @@ package com.pch777.input;
 import java.util.Scanner;
 
 public class UserInputManager {
-
     private final Scanner scanner;
 
     public UserInputManager() {

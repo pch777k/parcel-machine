@@ -3,12 +3,10 @@ package com.pch777.model;
 import java.util.Objects;
 
 public enum Action {
-
     LIST("list"),
     SEND("send"),
     FIND("find"),
     RECEIVE("receive");
-
     private final String value;
 
     Action(String value) {

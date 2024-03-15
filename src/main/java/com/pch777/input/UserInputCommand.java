@@ -8,10 +8,9 @@ import java.util.List;
 import static com.pch777.model.Action.of;
 
 public class UserInputCommand {
-
-    String command;
-    Action action;
-    List<String> params;
+    private String command;
+    private Action action;
+    private List<String> params;
 
     public UserInputCommand(String line) {
         if (line != null) {
@@ -28,8 +27,7 @@ public class UserInputCommand {
             }
         }
     }
-    public UserInputCommand() {
-    }
+    public UserInputCommand() {}
 
     public String getCommand() {
         return command;
@@ -51,6 +49,4 @@ public class UserInputCommand {
                 ", params=" + params +
                 '}';
     }
-
-
 }

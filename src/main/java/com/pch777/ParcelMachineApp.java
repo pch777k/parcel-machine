@@ -26,7 +26,7 @@ public class ParcelMachineApp {
         new ParcelMachineApp().start();
     }
     void start() {
-        LOG.info("Start app ...");
+        LOG.info("ParcelMachineApp \n" + howToUseApplication() + "Start app ...");
 
         boolean applicationLoop = true;
 
@@ -60,7 +60,8 @@ public class ParcelMachineApp {
                 LOG.info("Quit...");
                 applicationLoop = false;
 
-            } catch(PackNotFoundException e) {
+            }
+            catch(PackNotFoundException e) {
                 LOG.log(Level.WARNING, "Pack exception " + e.getMessage());
             }
 
@@ -73,5 +74,14 @@ public class ParcelMachineApp {
             }
 
         }
+    }
+
+    public static String howToUseApplication() {
+        String allowedCommands = "Allowed commands: help, quit, pack \n";
+        String commandsWithoutActionAndParams = "Command pattern for help, quit: <command> \n";
+        String commandPattern = "Command pattern for pack: <command> <action> <param1> <param2> \n";
+        String exampleSend = "Example for send pack: pack send PackName PackSize \n";
+        String exampleReceive = "Example for receive pack: pack receive PackNumber ReceiveCode \n";
+        return allowedCommands + commandsWithoutActionAndParams + commandPattern + exampleSend + exampleReceive;
     }
 }

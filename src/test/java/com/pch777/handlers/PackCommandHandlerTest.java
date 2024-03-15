@@ -84,7 +84,7 @@ class PackCommandHandlerTest {
     }
 
     @Test
-    public void shouldThrownExceptionIfValidationNumberOfParamsReturnFalse() throws PackNotFoundException {
+    public void shouldThrownExceptionIfValidationNumberOfParamsReturnFalse() {
         //given
         String input = "pack send";
         UserInputCommand command = new UserInputCommand(input);
